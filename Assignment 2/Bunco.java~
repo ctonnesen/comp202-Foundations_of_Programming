@@ -1,0 +1,79 @@
+public class Bunco {
+  public static void main(String[] args) { 
+    String player1 = args [0];
+    String player2 = args [1];
+    playBunco(player1, player2); 
+  }
+  
+  public static int diceRoll () {
+    int diceR = (int)(Math.random()*6)+1;
+    return diceR;
+  }
+  
+  public static int getScore (int diceR1, int diceR2, int diceR3, int roundNumber) { 
+    int scoreRunning = 0;
+    boolean scoreBunco = (diceR1==diceR2&&diceR2==diceR3&&diceR3==roundNumber);
+    boolean scoreMiniBunco = (diceR1==diceR2&&diceR2==diceR3);
+    if (scoreBunco == true) {
+      return 21;
+    }
+    if (scoreMiniBunco == true) {
+      return 5;
+    }
+    if (diceR1 == roundNumber) {
+      scoreRunning = scoreRunning + 1;
+    }
+    if (diceR2 == roundNumber) {
+      scoreRunning = scoreRunning + 1;
+    }
+    if (diceR3 == roundNumber) {
+      scoreRunning = scoreRunning + 1;
+    }
+    return scoreRunning;
+  }
+  
+  public static int playOneRound(String player, int roundNumber) {
+    boolean roundChecker = (roundNumber>=1 && roundNumber<=6);
+    if (roundChecker == true) {
+      int diceR1 = diceRoll ();
+      int diceR2 = diceRoll ();
+      int diceR3 = diceRoll ();
+      int roundPoints = getScore (diceR1, diceR2, diceR3, roundNumber);
+      System.out.println (player + " rolled " + diceR1 + " " + diceR2 + " " + diceR3 + " and scored " + roundPoints + " points"); 
+      return roundPoints; 
+    }
+    else {
+      System.out.println ("The input was not valid.");
+      return -1;
+    }   
+  }
+  
+  public static void playBunco(String player1, String player2) {
+    int roundNumber = 1;
+    int player1TotalScore = 0;
+    int player2TotalScore= 0;
+    while (roundNumber <= 6) {
+      System.out.println ("ROUND #:" + roundNumber);
+      System.out.println();
+      int roundPoints1 = playOneRound (player1, roundNumber);
+      player1TotalScore = roundPoints1 + player1TotalScore;
+      int roundPoints2 = playOneRound (player2, roundNumber);
+      player2TotalScore = roundPoints2 + player2TotalScore;
+      System.out.println();
+      System.out.println (player1 + "'s score after round " + roundNumber + " is " + player1TotalScore);
+      System.out.println (player2 + "'s score after round " + roundNumber + " is " + player2TotalScore);
+      System.out.println ("-----------------------------------------------");
+      roundNumber++;
+    }
+    System.out.println();
+    if (player1TotalScore > player2TotalScore) {
+      System.out.println (player1 + " wins!");
+    }
+    if (player1TotalScore < player2TotalScore) {
+      System.out.println (player2 + " wins!");
+    }
+    if (player1TotalScore == player2TotalScore) {
+      System.out.println ("Everyone's a winner! It's a tie!");
+    } 
+  }
+}

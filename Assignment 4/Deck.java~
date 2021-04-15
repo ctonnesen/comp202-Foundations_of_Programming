@@ -1,0 +1,105 @@
+import java.util.Arrays;
+import java.util.Random;
+
+public class Deck {
+  private Card [] cardDeck;
+  private int cardsLeft = 52;
+  private static Random numberGenerator = new Random(123);
+  
+  public Deck () {
+    int arrayPlace = 0;
+    Card [] cardDeck = new Card [52];
+    String [] suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
+    for (int index = 0; index < suits.length; index++) {
+      for (int i = 1; i < 14; i++) {
+        cardDeck [arrayPlace] = new Card (i, suits[index]);
+        arrayPlace++;
+      }
+    }
+  }
+  
+  public void main(String args[]) {   
+//    System.out.print("Before");
+//    Deck testDeck = new Deck ();
+//    System.out.print("After");
+//    testDeck.showCards();
+//    System.out.println();
+//    testDeck.shuffle();
+//    testDeck.showCards();
+  }
+  
+  public int getNumOfCards () {
+    return this.cardsLeft;
+  }
+  
+  public Card [] getCards() {
+    Card [] cardDeckCopy = new Card [this.cardsLeft];
+    for (int index = 0; index < this.cardsLeft; index++) {
+      cardDeckCopy [index] = cardDeck [index];
+    }
+    return cardDeckCopy;
+  }
+  
+  public void showCards () { 
+    for (int index =  this.cardsLeft; -1 < index; index--) {
+      System.out.print(this.cardDeck [index].getValue() + " of " + this.cardDeck [index].getSuit()+ ", ");  
+      if (index == 0 ) {
+        System.out.print(".");
+      }
+    } 
+  }
+  
+  public void shuffle() {
+    for (int index = 0; index < 1000; index++) {
+      Card [] temp = new Card [1];
+      int indice1Num = numberGenerator.nextInt(this.cardsLeft);
+      int indice2Num = numberGenerator.nextInt(this.cardsLeft);
+      temp[0] = cardDeck [indice1Num];
+      cardDeck [indice1Num] = cardDeck [indice2Num];
+      cardDeck [indice2Num] = temp[0];
+    }
+  }
+  
+  public Card deal() {
+    if (this.cardsLeft == 0) {
+      return null;
+    }
+    Card topOfDeck = cardDeck[this.cardsLeft-1];  
+    this.cardsLeft--;
+    return topOfDeck;
+  }
+  
+  public Card pickACard(int chosenCardNumber) {
+    int arrayChosen = 51 - chosenCardNumber;
+    if (this.cardsLeft == 0) {
+      return null;
+    }
+    if (this.cardsLeft < arrayChosen) {
+      return null;
+    }
+    Card chosenCard = cardDeck [arrayChosen];
+    this.cardsLeft--;
+    Card [] copyDeck = new Card [52];
+    int copyArrayCounter = 0;
+    boolean cardOut = false;
+    for (int index = 0; index < 52; index++) {
+      boolean cardChecker = (cardDeck [arrayChosen] == cardDeck[index]);
+      if (cardChecker == true) {
+        cardOut = true;
+        copyDeck[51] = cardDeck[index];
+      }
+      if (cardChecker == false && cardOut == true) {
+        copyDeck[index] = cardDeck[index +1];   
+      }
+      if (cardChecker == false && cardOut == false) {
+        copyDeck[index] = cardDeck[index];   
+      }
+    }   
+    return chosenCard;
+  } 
+  
+  public void restockDeck() {
+    Card [] newDeck = new Card [52];
+    cardDeck = newDeck;
+  } 
+}

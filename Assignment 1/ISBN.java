@@ -1,0 +1,83 @@
+// Christian Tonnesen
+// ID: 260847409
+
+
+// A program to identify the final number of a 5-digit ISBN using the leftmost 4 digits
+
+public class ISBN {
+  public static void main(String[] args){
+    int input = Integer.parseInt(args[0]);
+    double d5 = (input/1000%10);
+    double d4 = (input/100%10);
+    double d3 = (input/10%10);
+    double d2 = (input%10);
+    
+    // The above lines of code are responsible for separating the singular input of args[0] into four separate digits. This is necessary as each individual digit has to be multiplied by its respective 
+    // place in the ISBN lineup and that's difficult to do with it all together. To achieve this, the variable Input is divided by 1000, 100, and 10, which create various quotients with remainders.
+    // The remainders are the focus, as they are essentially the number we want to assign a position variable. To do this, we use %10 to divide by 10 again and isolate it from the quotient, thus
+    // providing our integer.
+    
+    
+    // In order to see what the value of our mystery 5th digit should be, we need to test every digit between 0 - 10 and see if they work. To do this, I constructed a repeatable expression that can be
+    // used to test every digit by brute force.
+    
+    int ld0 = 0;
+    
+    // A variable 1d0 (First Digit: 0) is initialized for concatenation later.
+    
+    boolean zeroTest = (((d5*5 + d4*4 + d3*3 + d2*2)+0*1)%11==0);
+    
+    // A boolean variable is initialized to test for if "0" creates a valid 5-digit ISBN when placed in the d1 position. The equation for the ISBN sum is taken from the Assignment outline. The 
+    // boolean is true if the placed integer creates a sum divisible by 11 with no remainder.
+    
+    if (zeroTest == true) {  
+      System.out.println("The last digit must be " + ld0);}
+    
+    // If the boolean is true, then the conditional statment is executed and prints that the last digit must be "1d0" or 0. If 0 does not create a valid ISBN, then the conditional is not executed and
+    // the compiler moves on to the next block of integer testing. This process is repeated until a valid integer is found. The following code is a copy of what was just seen, with 0 being replaced
+    // by the appropriately increasing test values (one, two, three, etc.)
+    
+    int ld1 = 1;
+    boolean oneTest = (((d5*5 + d4*4 + d3*3 + d2*2)+1*1)%11==0);
+    if (oneTest == true) {  
+      System.out.println("The last digit must be " + ld1);}
+    int ld2 = 2;
+    boolean twoTest = (((d5*5 + d4*4 + d3*3 + d2*2)+2*1)%11==0);
+    if (twoTest == true) {  
+      System.out.println("The last digit must be " + ld2);}
+    int ld3 = 3;
+    boolean threeTest = (((d5*5 + d4*4 + d3*3 + d2*2)+3*1)%11==0);
+    if (threeTest == true) {  
+      System.out.println("The last digit must be " + ld3);}
+    int ld4 = 4;
+    boolean fourTest = (((d5*5 + d4*4 + d3*3 + d2*2)+4*1)%11==0);
+    if (fourTest == true) {  
+      System.out.println("The last digit must be " + ld4);}
+    int ld5 = 5;
+    boolean fiveTest = (((d5*5 + d4*4 + d3*3 + d2*2)+5*1)%11==0);
+    if (fiveTest == true) {  
+      System.out.println("The last digit must be " + ld5);}
+    int ld6 = 6;
+    boolean sixTest = (((d5*5 + d4*4 + d3*3 + d2*2)+6*1)%11==0);
+    if (sixTest == true) {  
+      System.out.println("The last digit must be " + ld6);}
+    int ld7 = 7;
+    boolean sevenTest = (((d5*5 + d4*4 + d3*3 + d2*2)+7*1)%11==0);
+    if (sevenTest == true) {  
+      System.out.println("The last digit must be " + ld7);}
+    int ld8 = 8;
+    boolean eightTest = (((d5*5 + d4*4 + d3*3 + d2*2)+8*1)%11==0);
+    if (eightTest == true) {  
+      System.out.println("The last digit must be " + ld8);}
+    int ld9 = 9;
+    boolean nineTest = (((d5*5 + d4*4 + d3*3 + d2*2)+9*1)%11==0);
+    if (nineTest == true) {  
+      System.out.println("The last digit must be " + ld9);}
+    boolean tenTest = (((d5*5 + d4*4 + d3*3 + d2*2)+10*1)%11==0);
+    if (tenTest == true) {  
+      System.out.println("The last digit must be X");}
+    
+// As outlined, X is used if no other of the integers from 0 - 9 can satisfy the ISBN sum requirement.
+    
+  }
+}
