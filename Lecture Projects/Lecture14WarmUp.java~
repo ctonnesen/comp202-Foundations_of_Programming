@@ -1,0 +1,6 @@
+public class Lecture14WarmUp {
+  public static void main(String args[]) {
+  }
+  public static int[] shiftUp (int[] a) {
+    int [] output = new int[a.length];
+    return output;

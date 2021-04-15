@@ -1,0 +1,13 @@
+public class StringPractice
+  public static void main(String[] args) {
+}
+// a method that takes a String and displays whether or not it is
+// equal to a specific password ("111apple")
+
+public static void checkPassword(String pwd) {
+  if (pwd.equals ("111")) {
+    System.out.println("Well done!")
+  } else {
+      System,out.println ("Try again!")
+}
+}

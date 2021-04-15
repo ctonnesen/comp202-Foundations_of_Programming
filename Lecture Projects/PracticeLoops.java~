@@ -1,0 +1,11 @@
+public class PracticeLoops {
+  public static void main(String[] args) {
+   printLine('$', 8); 
+  }
+  public static void printLine (char symbol, int n) {
+    int x = 0
+      while (x < n) {
+    System.out.println(symbol)
+  }
+}
+}

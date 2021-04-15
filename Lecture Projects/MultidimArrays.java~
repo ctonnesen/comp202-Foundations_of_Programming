@@ -1,0 +1,9 @@
+import java.util.Arrays;
+public class MultidimArrays {
+  public static void main(String [] args) {
+    int[][] x = {{1,2,3}, {4,5}};
+    int[][] y = new int [2][5];
+    int [][] z = new int [4][];
+    
+    System.out.println(x[1][3])
+    
